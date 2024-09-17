@@ -231,7 +231,13 @@ img{
     
     
 }
-
-
-
+#conteudo_3_caixas {
+    display: grid;
+    grid-column: ;
+}
+#conteudo_3_caixas div {
+    border: solid #4F46E5;
+    border-radius: 15px;
+    border-width: 1px;
+}
 
