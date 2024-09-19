@@ -145,9 +145,9 @@ img{
     margin-left: 10%;
     margin-bottom: 0px;
     border-radius: 8px;
-    background-color: #4F46E5;
-    border-color: #4F46E5;
-    border: solid #4F46E5;
+    background-color: #3730A3;
+    border-color: #3730A3;
+    border: solid #3730A3;
     color: white;
     width: 80%;
     height: 10%;
@@ -231,13 +231,40 @@ img{
     
     
 }
+
+#conteudo_3 {
+    width: 100%;
+    height: 50%;
+    font-size: 15px;
+    color: #3730A3;
+    
+}
+
+#conteudo_3 h1 {
+    margin-left: 40%;
+}
+
 #conteudo_3_caixas {
     display: grid;
-    grid-column: ;
+    grid-template-columns: 24% 24% 24% 24%;
+    width: 100%;
+    height: 50%;
+
+    
 }
 #conteudo_3_caixas div {
     border: solid #4F46E5;
     border-radius: 15px;
     border-width: 1px;
+    margin: 5px;
+    width: 96%;
+    justify-content: space-between;
+}
+
+#conteudo_3_caixas p {
+    width: 80%;
+    height: 60%;
+    margin: 35px;
+    font-size: 20px;
 }
 
