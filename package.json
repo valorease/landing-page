@@ -1,0 +1,27 @@
+{
+  "name": "landing-page",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "copy:css": "cpy 'src/**/*' build --parents",
+    "build:css": "postcss 'build/**/*.css' --replace",
+    "minify:js": "node minify.js",
+    "build": "npm run copy:css && npm run build:css && npm run minify:js",
+    "dev": "npx live-server ./src/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "cpy-cli": "^5.0.0",
+    "cssnano": "^7.0.6",
+    "glob": "^11.0.0",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "postcss-nesting": "^13.0.0",
+    "terser": "^5.33.0"
+  }
+}
