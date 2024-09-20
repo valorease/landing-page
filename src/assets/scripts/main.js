@@ -1,34 +1,37 @@
 // @ts-check
 
-export class FlexIcon extends HTMLElement {
-  constructor() {
-    super();
+import { elements } from "./elements.js";
+
+console.log("%cOlá, curioso.", "font-size: x-large");
+
+console.log(
+  "%cSe você estiver explorando e gostaria de saber mais sobre como este site funciona, sinta-se à vontade para nos contatar.",
+  "font-size: large"
+);
+
+console.log(
+  "%cPor favor, lembre-se de NÃO executar códigos aqui, pois isso pode comprometer a segurança do seu navegador.",
+  "font-size: large"
+);
+
+elements();
+
+document.querySelectorAll("[data-hook]")?.forEach(async (element) => {
+  const hookName = element.getAttribute("data-hook");
+
+  if (hookName === null) {
+    return;
   }
 
-  static cache = new Map();
+  const hook = await import("./hooks/" + hookName + ".js");
 
-  async connectedCallback() {
-    const name = this.getAttribute("name");
+  const { style } = await hook.default(element);
 
-    if (!name) {
-      return;
-    }
-
-    if (!FlexIcon.cache.has(name)) {
-      const response = await fetch(`./assets/icons/${name}.svg`).catch(
-        () => ""
-      );
-
-      FlexIcon.cache.set(
-        name,
-        response instanceof Response && response.status === 200
-          ? await response.text()
-          : ""
-      );
-    }
-
-    this.innerHTML = FlexIcon.cache.get(name);
+  if (style) {
+    document.head.innerHTML += `
+      <link rel="stylesheet" href="./assets/styles/hooks/${hookName}.css" />
+    `;
   }
-}
+});
 
-customElements.define("f-icon", FlexIcon);
+export {};

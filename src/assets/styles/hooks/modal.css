@@ -1,0 +1,97 @@
+.modal {
+  display: none;
+  place-items: center;
+  gap: 20px;
+
+  width: calc(100% - 80px);
+  max-width: 500px;
+
+  z-index: 1000;
+  position: fixed;
+
+  overflow: visible;
+
+  top: 50%;
+  left: 50%;
+  transform: scale(1) translate(-50%, -50%);
+
+  padding: 20px;
+  border-radius: 20px;
+  background-color: var(--gray-50);
+  outline: none;
+  text-align: center;
+
+  animation: modal-fade-out 0.3s forwards;
+
+  &[open] {
+    display: grid;
+    animation: modal-fade-in 0.3s forwards;
+  }
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    animation: backdrop-fade-in 0.3s forwards;
+  }
+
+  &.modal-fade-out {
+    animation: modal-fade-out 0.3s forwards;
+  }
+
+  > .close-button {
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--blue-950);
+    background-color: var(--gray-50);
+    color: var(--blue-950);
+    position: absolute;
+    top: -15px;
+    right: 0;
+    font-size: 2rem;
+  }
+}
+
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0) translate(-50%, -50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
+@keyframes modal-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0) translate(-50%, -50%);
+  }
+}
+
+@keyframes backdrop-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backdrop-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
