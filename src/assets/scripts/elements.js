@@ -1,3 +1,5 @@
+// @ts-check
+
 class FlexIcon extends HTMLElement {
   constructor() {
     super();
@@ -13,19 +15,19 @@ class FlexIcon extends HTMLElement {
     }
 
     if (!FlexIcon.cache.has(name)) {
-      const response = await fetch(`./assets/icons/${name}.svg`).catch(
-        () => ""
-      );
-
-      FlexIcon.cache.set(
-        name,
-        response instanceof Response && response.status === 200
-          ? await response.text()
-          : ""
-      );
+      FlexIcon.cache.set(name, this.loadIcon(name));
     }
 
-    this.innerHTML = FlexIcon.cache.get(name);
+    this.innerHTML = await FlexIcon.cache.get(name);
+  }
+
+  /** @param {string} name */
+  async loadIcon(name) {
+    const response = await fetch(`./assets/icons/${name}.svg`).catch(() => "");
+
+    return response instanceof Response && response.status === 200
+      ? await response.text()
+      : "";
   }
 }
 
